@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Spring Application</title>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" th:href="@{theme.css}">
+    </head>
+    <body>
+        <table class="table table-striped tablePerso">
+            <thead>
+                <tr>
+                    <th style="display: none;"> id </th>
+                    <th> Firstname </th>
+                    <th> Lastname </th>
+                    <th> Age </th>
+                    <th> Phone </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:if="${players.empty}">
+                    <td colspan="2"> No Player Available </td>
+                </tr>
+                <tr th:each="player : ${players}">
+            <form action="#" th:action="@{update}" th:object="${player}">
+                <td style="display: none;"><input type="text" th:value="${player.id}"
+                                                  class="form-control" id="id" name="id" required/></td>
+                <td><input type="text" th:value="${player.firstNAme}"
+                           class="form-control" id="firstNAme" name="firstNAme" required/></td>
+
+                <td><input type="text" th:value="${player.lastName}"
+                           class="form-control" id="lastName" name="lastName" required/></td>
+
+                <td><input type="text" th:value="${player.age}"
+                           class="form-control" id="age" name="age" required/></td>
+
+                <td><input type="text" th:value="${player.phoneNumber}"
+                           class="form-control" id="phoneNumber" name="phoneNumber" required/></td>
+                <td>
+                    <a th:href="@{delete(id=${player.id})}" class="btn btn-outline-secondary"><i class="fas fa-trash-alt"></i></a>
+                    <button type="submit" class="btn btn-outline-secondary"><i class="fas fa-edit"></i></button></td>
+            </form>
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>
